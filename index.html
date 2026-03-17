@@ -41,7 +41,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 
 /* ── Page header ── */
 .hero{background:#fff;padding:20px 0 0;border-bottom:1px solid var(--border)}
-.hero-inner{max-width:1100px;margin:0 auto;padding:0 20px 20px}
+.hero-inner{max-width:1200px;margin:0 auto;padding:0 20px 20px}
 .breadcrumb{display:flex;align-items:center;gap:5px;font-size:12px;margin-bottom:10px;flex-wrap:wrap}
 .breadcrumb a{color:var(--muted);text-decoration:none;transition:color .15s}
 .breadcrumb a:hover{color:var(--blue)}
@@ -54,7 +54,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 .hero-chip{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:20px;background:#f1f5f9;border:1px solid var(--border);font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.03em}
 
 /* ── Layout ── */
-.wrap{max-width:1100px;margin:0 auto;padding:24px 20px 80px}
+.wrap{max-width:1200px;margin:0 auto;padding:24px 20px 80px}
 
 /* ── Stat cards ── */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}
@@ -99,7 +99,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 
 /* ── Table ── */
 .tbl-wrap{overflow-x:auto}
-table{width:100%;border-collapse:collapse;font-size:13px;min-width:900px}
+table{width:100%;border-collapse:collapse;font-size:13px;min-width:1020px}
 thead th{text-align:left;padding:10px 12px;border-bottom:1.5px solid var(--border);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);background:#f8fafc;white-space:nowrap}
 td{padding:11px 12px;border-bottom:1px solid var(--border);vertical-align:middle}
 tr:last-child td{border-bottom:none}
@@ -112,8 +112,31 @@ tr.hl td{background:#fffbeb!important;transition:background 1s}
 .tid.assembly{color:var(--purple);background:var(--purple-lt);border-color:var(--purple-bd)}
 .tname{font-weight:600;color:var(--text)}
 .tsub{font-size:11px;color:var(--dim);margin-top:2px}
-.tpill{display:inline-flex;padding:1px 8px;border-radius:6px;font-size:11px;font-weight:600;background:#f1f5f9;color:var(--muted);border:1px solid var(--border)}
 .row-info{font-size:11px;color:var(--dim);margin-top:12px}
+
+/* ── Status badge ── */
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap}
+.badge::before{content:'';width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.badge.active{background:var(--green-lt);color:var(--green-dk);border:1px solid #a7f3d0}
+.badge.active::before{background:var(--green)}
+.badge.inactive{background:#f1f5f9;color:#475569;border:1px solid var(--border2)}
+.badge.inactive::before{background:var(--dim)}
+
+/* ── Toggle switch ── */
+.toggle-row{display:flex;align-items:center;gap:10px;padding:10px 13px;background:#f8fafc;border:1.5px solid var(--border);border-radius:var(--r)}
+.toggle-sw{position:relative;width:40px;height:22px;flex-shrink:0}
+.toggle-sw input{opacity:0;width:0;height:0}
+.toggle-sl{position:absolute;inset:0;background:#cbd5e1;border-radius:20px;cursor:pointer;transition:.25s}
+.toggle-sl::before{content:'';position:absolute;width:16px;height:16px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:.25s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.toggle-sw input:checked + .toggle-sl{background:var(--green)}
+.toggle-sw input:checked + .toggle-sl::before{transform:translateX(18px)}
+
+/* ── Phone / Email cell ── */
+.phone-lines{font-size:11px;color:var(--text2);line-height:1.8}
+.phone-lines span{display:block}
+.email-cell{font-size:11px;color:var(--blue);word-break:break-all}
+.email-cell a{color:var(--blue);text-decoration:none}
+.email-cell a:hover{text-decoration:underline}
 
 /* ── GPS indicator ── */
 .gps-dot{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600}
@@ -130,6 +153,8 @@ tr.hl td{background:#fffbeb!important;transition:background 1s}
 .act-btn{width:30px;height:30px;border-radius:var(--r);border:1.5px solid var(--border2);background:var(--white);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--muted);transition:all .15s;flex-shrink:0}
 .act-btn:hover{transform:translateY(-1px);box-shadow:0 2px 6px rgba(0,0,0,.1)}
 .act-btn.edit:hover{border-color:var(--blue);color:var(--blue);background:#eff6ff}
+.act-btn.tog-on:hover{border-color:var(--amber);color:var(--amber);background:var(--amber-lt)}
+.act-btn.tog-off:hover{border-color:var(--green);color:var(--green);background:var(--green-lt)}
 .act-btn.del:hover{border-color:var(--red);color:var(--red);background:var(--red-lt)}
 
 /* ── Empty ── */
@@ -160,7 +185,6 @@ tr.hl td{background:#fffbeb!important;transition:background 1s}
 @media(max-width:500px){.form-grid{grid-template-columns:1fr}}
 .field{margin-bottom:0}
 .field.full{grid-column:1/-1}
-.field.third{grid-column:span 1}
 .flbl{display:block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text2);margin-bottom:6px}
 .flbl .req{color:var(--red);margin-left:2px}
 .finput,.fselect{width:100%;padding:10px 13px;border:1.5px solid var(--border2);border-radius:var(--r);font-size:13px;color:var(--text);background:var(--white);outline:none;font-family:'Inter',sans-serif;transition:border-color .2s,box-shadow .2s}
@@ -179,9 +203,6 @@ tr.hl td{background:#fffbeb!important;transition:background 1s}
 .logo-upload-preview{width:60px;height:60px;border-radius:8px;border:1px solid var(--border2);object-fit:cover;margin:0 auto 8px;display:block;background:#f1f5f9}
 .logo-upload p{font-size:12px;color:var(--muted);margin-bottom:4px}
 .logo-upload span{font-size:11px;color:var(--dim)}
-
-/* GPS row */
-.gps-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 
 /* ── Delete confirm ── */
 .del-box{background:var(--red-lt);border:1px solid #fecaca;border-radius:var(--r);padding:12px 14px;margin:10px 0}
@@ -249,16 +270,30 @@ tr.hl td{background:#fffbeb!important;transition:background 1s}
       <span class="cur">Church Reg. Info</span>
     </div>
     <div class="hero-row">
-     
+      <div>
+        <h1>Church Registration Info</h1>
+        <p>Manage registered church assemblies, their contact details, GPS coordinates, and logos linked to each circuit.</p>
+        <div class="hero-meta">
+          <span class="hero-chip">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            tbl_churchreginfo
+          </span>
+          <span class="hero-chip">Linked: Circuit (FK)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- ── Main content ── -->
 <div class="wrap">
 
   <!-- Stat cards -->
-  <div class="stats anim">
+  <div class="stats anim" style="grid-template-columns:repeat(5,1fr)">
     <div class="scard blue"><div class="scard-lbl">Total Churches</div><div class="scard-val" id="stTotal">0</div></div>
-    <div class="scard green"><div class="scard-lbl">With GPS</div><div class="scard-val" id="stGPS">0</div></div>
-    <div class="scard amber"><div class="scard-lbl">With Logo</div><div class="scard-val" id="stLogo">0</div></div>
+    <div class="scard green"><div class="scard-lbl">Active</div><div class="scard-val" id="stActive">0</div></div>
+    <div class="scard amber"><div class="scard-lbl">Inactive</div><div class="scard-val" id="stInactive">0</div></div>
+    <div class="scard slate"><div class="scard-lbl">With GPS</div><div class="scard-val" id="stGPS">0</div></div>
     <div class="scard slate"><div class="scard-lbl">Circuits Linked</div><div class="scard-val" id="stCircuits">0</div></div>
   </div>
 
@@ -278,6 +313,11 @@ tr.hl td{background:#fffbeb!important;transition:background 1s}
           <select class="fsel" id="filtCircuit" onchange="doFilter()">
             <option value="">All circuits</option>
           </select>
+          <select class="fsel" id="filtStatus" onchange="doFilter()">
+            <option value="">All status</option>
+            <option value="1">Active</option>
+            <option value="0">Inactive</option>
+          </select>
           <button class="btn primary" onclick="openAdd()">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
             Add church
@@ -292,14 +332,16 @@ tr.hl td{background:#fffbeb!important;transition:background 1s}
         <table>
           <thead>
             <tr>
-              <th style="width:60px">ID</th>
+              <th style="width:50px">ID</th>
               <th style="width:44px">Logo</th>
-              <th>Assembly / Branch</th>
+              <th style="min-width:160px">Assembly / Branch</th>
               <th style="width:125px">Assembly ID</th>
               <th style="width:120px">Circuit</th>
-              <th style="width:160px">Contact</th>
-              <th style="width:80px">GPS</th>
-              <th style="width:90px">Actions</th>
+              <th style="width:140px">Phone</th>
+              <th style="width:175px">Email</th>
+              <th style="width:70px">GPS</th>
+              <th style="width:80px">Status</th>
+              <th style="width:105px">Actions</th>
             </tr>
           </thead>
           <tbody id="tBody"></tbody>
@@ -424,7 +466,7 @@ tr.hl td{background:#fffbeb!important;transition:background 1s}
           Logos
         </div>
 
-        <div class="field">
+        <div class="field full">
           <label class="flbl">Church Logo</label>
           <div class="logo-upload" onclick="document.getElementById('mChurchLogoFile').click()">
             <input type="file" id="mChurchLogoFile" accept="image/*" onchange="previewLogo(this,'mChurchLogoPreview','mChurchLogoData')">
@@ -437,17 +479,21 @@ tr.hl td{background:#fffbeb!important;transition:background 1s}
           <input type="hidden" id="mChurchLogoData">
         </div>
 
-        <div class="field">
-          <label class="flbl">Report Logo</label>
-          <div class="logo-upload" onclick="document.getElementById('mReportLogoFile').click()">
-            <input type="file" id="mReportLogoFile" accept="image/*" onchange="previewLogo(this,'mReportLogoPreview','mReportLogoData')">
-            <img id="mReportLogoPreview" class="logo-upload-preview" src="" alt="" style="display:none">
-            <div id="mReportLogoPlaceholder">
-              <p>Click to upload report logo</p>
-              <span>PNG, JPG up to 2 MB</span>
-            </div>
+        <!-- Section: Status -->
+        <div class="fsec">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 8 12 12 14 14"/></svg>
+          Status
+        </div>
+
+        <div class="field full">
+          <div class="toggle-row">
+            <label class="toggle-sw">
+              <input type="checkbox" id="mIsActive" checked onchange="updateStatusLbl()">
+              <span class="toggle-sl"></span>
+            </label>
+            <span id="mStatusLbl"><span class="badge active">Active</span></span>
+            <span style="font-size:12px;color:var(--muted);margin-left:4px">Toggle to activate or deactivate this church record</span>
           </div>
-          <input type="hidden" id="mReportLogoData">
         </div>
 
       </div>
@@ -522,27 +568,25 @@ tr.hl td{background:#fffbeb!important;transition:background 1s}
 <script>
 /* ═══════════════════════════════════════════════════════════
    REFERENCE DATA — Circuits (FK from tbl_churchcicuit)
-   Swap with AJAX fetch in PHP implementation
 ═══════════════════════════════════════════════════════════ */
 const CIRCUITS = [
-  { id: '02GH05111', name: 'Dwenewoho Circuit',     areaID: '02GH0511' },
-  { id: '02GH05112', name: 'Manhean Circuit',        areaID: '02GH0511' },
-  { id: '02GH05121', name: 'Adenta West Circuit',    areaID: '02GH0512' },
-  { id: '02GH05211', name: 'Tema Port Circuit',      areaID: '02GH0521' },
-  { id: '03AS00111', name: 'Garki Central Circuit',  areaID: '03AS0011' },
+  { id: '02GH05111', name: 'Dwenewoho Circuit',    areaID: '02GH0511' },
+  { id: '02GH05112', name: 'Manhean Circuit',       areaID: '02GH0511' },
+  { id: '02GH05121', name: 'Adenta West Circuit',   areaID: '02GH0512' },
+  { id: '02GH05211', name: 'Tema Port Circuit',     areaID: '02GH0521' },
+  { id: '03AS00111', name: 'Garki Central Circuit', areaID: '03AS0011' },
 ];
 
 /* ═══════════════════════════════════════════════════════════
-   SAMPLE DATA  (matches tbl_churchreginfo schema)
-   ChurchID is AUTO_INCREMENT — simulated with nextID counter
+   SAMPLE DATA
 ═══════════════════════════════════════════════════════════ */
-let nextID = 7; // matches AUTO_INCREMENT=7 from schema dump
+let nextID = 7;
 let rows = [
-  { id:1, assemblyID:'01GH011111', circuitID:'02GH05111', branch:'Pure Water',         postal:null,           residential:null,                   zip:null,       tel1:null,            tel2:null, cel:null,           email:null,                    website:null,               churchLogo:null, reportLogo:null, gpsLat:null, gpsLong:0,        capturedDate:'25 Feb 2019' },
-  { id:2, assemblyID:'02GH051121', circuitID:'02GH05112', branch:'Manhean Central',    postal:'P.O. Box 44',  residential:'Manhean Junction Rd',  zip:'GA-001',   tel1:'+233 30 111 222',tel2:null, cel:'+233 24 333 444',email:'manhean@cop.org',      website:'https://cop.org',  churchLogo:null, reportLogo:null, gpsLat:5.6202, gpsLong:-0.1415, capturedDate:'10 Mar 2019' },
-  { id:3, assemblyID:'02GH051211', circuitID:'02GH05121', branch:'Adenta Frafraha',    postal:'P.O. Box 99',  residential:'Adenta Frafraha Road', zip:null,       tel1:'+233 30 555 666',tel2:null, cel:null,           email:null,                    website:null,               churchLogo:null, reportLogo:null, gpsLat:5.7295, gpsLong:-0.1571, capturedDate:'01 Apr 2019' },
-  { id:4, assemblyID:'02GH052111', circuitID:'02GH05211', branch:'Tema Fishing Harbour',postal:null,          residential:'Tema Port Road',       zip:'GA-500',   tel1:null,            tel2:null, cel:'+233 20 777 888',email:'tema@cop.org',          website:null,               churchLogo:null, reportLogo:null, gpsLat:null, gpsLong:0,        capturedDate:'12 Jun 2020' },
-  { id:5, assemblyID:'03AS001111', circuitID:'03AS00111', branch:'Garki Main Assembly', postal:'PMB 200 FCT', residential:'Area 11 Garki, Abuja', zip:'900001',   tel1:'+234 9 123 4567',tel2:null, cel:'+234 803 000 111',email:'garki@ag.ng',          website:'https://ag.ng',    churchLogo:null, reportLogo:null, gpsLat:9.0765, gpsLong:7.3986,  capturedDate:'20 Jan 2021' },
+  { id:1, assemblyID:'01GH011111', circuitID:'02GH05111', branch:'Pure Water',          postal:null,           residential:null,                   zip:null,     tel1:null,             tel2:null, cel:null,              email:null,             website:null,              churchLogo:null, gpsLat:null,   gpsLong:0,       active:1, capturedDate:'25 Feb 2019' },
+  { id:2, assemblyID:'02GH051121', circuitID:'02GH05112', branch:'Manhean Central',     postal:'P.O. Box 44',  residential:'Manhean Junction Rd',  zip:'GA-001', tel1:'+233 30 111 222', tel2:null, cel:'+233 24 333 444', email:'manhean@cop.org', website:'https://cop.org', churchLogo:null, gpsLat:5.6202, gpsLong:-0.1415, active:1, capturedDate:'10 Mar 2019' },
+  { id:3, assemblyID:'02GH051211', circuitID:'02GH05121', branch:'Adenta Frafraha',     postal:'P.O. Box 99',  residential:'Adenta Frafraha Road', zip:null,     tel1:'+233 30 555 666', tel2:null, cel:null,              email:null,             website:null,              churchLogo:null, gpsLat:5.7295, gpsLong:-0.1571, active:1, capturedDate:'01 Apr 2019' },
+  { id:4, assemblyID:'02GH052111', circuitID:'02GH05211', branch:'Tema Fishing Harbour',postal:null,           residential:'Tema Port Road',       zip:'GA-500', tel1:null,             tel2:null, cel:'+233 20 777 888', email:'tema@cop.org',    website:null,              churchLogo:null, gpsLat:null,   gpsLong:0,       active:0, capturedDate:'12 Jun 2020' },
+  { id:5, assemblyID:'03AS001111', circuitID:'03AS00111', branch:'Garki Main Assembly', postal:'PMB 200 FCT',  residential:'Area 11 Garki, Abuja', zip:'900001', tel1:'+234 9 123 4567', tel2:null, cel:'+234 803 000 111',email:'garki@ag.ng',     website:'https://ag.ng',   churchLogo:null, gpsLat:9.0765, gpsLong:7.3986,  active:1, capturedDate:'20 Jan 2021' },
 ];
 
 let viewingID = null;
@@ -571,13 +615,10 @@ function previewLogo(input, previewID, dataID){
   if(!file) return;
   const reader = new FileReader();
   reader.onload = e => {
-    const preview = document.getElementById(previewID);
-    const placeholder = previewID === 'mChurchLogoPreview'
-      ? document.getElementById('mChurchLogoPlaceholder')
-      : document.getElementById('mReportLogoPlaceholder');
+    const preview     = document.getElementById(previewID);
+    document.getElementById('mChurchLogoPlaceholder').style.display = 'none';
     preview.src = e.target.result;
     preview.style.display = 'block';
-    placeholder.style.display = 'none';
     document.getElementById(dataID).value = e.target.result;
   };
   reader.readAsDataURL(file);
@@ -596,8 +637,9 @@ function resetLogoUpload(previewID, placeholderID, dataID, fileID){
 ═══════════════════════════════════════════════════════════ */
 function updateStats(){
   document.getElementById('stTotal').textContent    = rows.length;
+  document.getElementById('stActive').textContent   = rows.filter(r => r.active).length;
+  document.getElementById('stInactive').textContent = rows.filter(r => !r.active).length;
   document.getElementById('stGPS').textContent      = rows.filter(r => r.gpsLat !== null && r.gpsLat !== 0).length;
-  document.getElementById('stLogo').textContent     = rows.filter(r => r.churchLogo !== null).length;
   document.getElementById('stCircuits').textContent = new Set(rows.map(r => r.circuitID)).size;
 }
 
@@ -615,17 +657,39 @@ function render(data){
   ri.textContent = 'Showing ' + data.length + ' of ' + rows.length + ' records';
 
   if(!data.length){
-    tb.innerHTML = `<tr><td colspan="8"><div class="empty"><div class="empty-icon">🏛️</div><p>No church records found.</p><button class="btn primary" style="margin-top:8px" onclick="openAdd()">Add first church</button></div></td></tr>`;
+    tb.innerHTML = `<tr><td colspan="10"><div class="empty"><div class="empty-icon">🏛️</div><p>No church records found.</p><button class="btn primary" style="margin-top:8px" onclick="openAdd()">Add first church</button></div></td></tr>`;
     return;
   }
 
   tb.innerHTML = data.map(r => {
     const circ   = getCircuit(r.circuitID);
     const hasGPS = r.gpsLat !== null && r.gpsLat !== 0;
+
     const gpsBadge = hasGPS
       ? `<span class="gps-dot set">Set</span>`
       : `<span class="gps-dot unset">—</span>`;
-    const contact = [r.tel1, r.cel, r.email].filter(Boolean).join('<br>');
+
+    const statusBadge = r.active
+      ? `<span class="badge active">Active</span>`
+      : `<span class="badge inactive">Inactive</span>`;
+
+    const togCls   = r.active ? 'act-btn tog-on' : 'act-btn tog-off';
+    const togTitle = r.active ? 'Deactivate' : 'Reactivate';
+    const togSvg   = r.active
+      ? `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="5" width="22" height="14" rx="7"/><circle cx="16" cy="12" r="3" fill="currentColor"/></svg>`
+      : `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="5" width="22" height="14" rx="7"/><circle cx="8" cy="12" r="3" fill="currentColor"/></svg>`;
+
+    // Phone column — tel1, tel2, cel stacked
+    const phones = [r.tel1, r.tel2, r.cel].filter(Boolean);
+    const phoneCell = phones.length
+      ? `<div class="phone-lines">${phones.map(p => `<span>${p}</span>`).join('')}</div>`
+      : `<span style="color:var(--dim)">—</span>`;
+
+    // Email column
+    const emailCell = r.email
+      ? `<div class="email-cell"><a href="mailto:${r.email}">${r.email}</a></div>`
+      : `<span style="color:var(--dim)">—</span>`;
+
     return `<tr id="row-${r.id}">
       <td><span class="tid" style="cursor:pointer;font-size:12px" onclick="openView(${r.id})" title="View details">#${r.id}</span></td>
       <td>${logoThumb(r.churchLogo)}</td>
@@ -635,8 +699,10 @@ function render(data){
       </td>
       <td><span class="tid assembly">${r.assemblyID}</span></td>
       <td><span class="tid circuit" title="${circ.name}">${r.circuitID}</span></td>
-      <td style="font-size:11px;color:var(--text2);line-height:1.6">${contact || '<span style="color:var(--dim)">—</span>'}</td>
+      <td>${phoneCell}</td>
+      <td>${emailCell}</td>
       <td>${gpsBadge}</td>
+      <td>${statusBadge}</td>
       <td>
         <div class="act-btns">
           <button class="act-btn" title="View" onclick="openView(${r.id})">
@@ -644,6 +710,9 @@ function render(data){
           </button>
           <button class="act-btn edit" title="Edit" onclick="openEdit(${r.id})">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          </button>
+          <button class="${togCls}" title="${togTitle}" onclick="doToggle(${r.id})">
+            ${togSvg}
           </button>
           <button class="act-btn del" title="Delete" onclick="openDelete(${r.id})">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
@@ -660,29 +729,33 @@ function render(data){
 function doFilter(){
   const q  = document.getElementById('srchBox').value.toLowerCase().trim();
   const c  = document.getElementById('filtCircuit').value;
+  const s  = document.getElementById('filtStatus').value;
   const filtered = rows.filter(r => {
     const mq = !q
       || String(r.id).includes(q)
       || r.assemblyID.toLowerCase().includes(q)
       || (r.branch||'').toLowerCase().includes(q)
       || r.circuitID.toLowerCase().includes(q)
-      || (r.email||'').toLowerCase().includes(q);
+      || (r.email||'').toLowerCase().includes(q)
+      || (r.tel1||'').toLowerCase().includes(q)
+      || (r.tel2||'').toLowerCase().includes(q)
+      || (r.cel||'').toLowerCase().includes(q);
     const mc = c === '' || r.circuitID === c;
-    return mq && mc;
+    const ms = s === '' || String(r.active) === s;
+    return mq && mc && ms;
   });
   render(filtered);
 }
 
 function reloadTable(){
-  document.getElementById('srchBox').value       = '';
-  document.getElementById('filtCircuit').value   = '';
+  document.getElementById('srchBox').value      = '';
+  document.getElementById('filtCircuit').value  = '';
+  document.getElementById('filtStatus').value   = '';
   render(rows);
   showToast('Table refreshed', 'info');
 }
 
-/* ═══════════════════════════════════════════════════════════
-   HIGHLIGHT ROW
-═══════════════════════════════════════════════════════════ */
+/* ── Highlight row ── */
 function hlRow(id){
   setTimeout(() => {
     const r = document.getElementById('row-' + id);
@@ -727,9 +800,9 @@ function validate(){
 }
 
 function setFormValues(r){
-  document.getElementById('mAssemblyID').value  = r ? r.assemblyID  : '';
+  document.getElementById('mAssemblyID').value  = r ? r.assemblyID       : '';
   document.getElementById('mBranch').value      = r ? (r.branch||'')     : '';
-  document.getElementById('mCircuitID').value   = r ? r.circuitID   : '';
+  document.getElementById('mCircuitID').value   = r ? r.circuitID        : '';
   document.getElementById('mPostal').value      = r ? (r.postal||'')     : '';
   document.getElementById('mResidential').value = r ? (r.residential||'') : '';
   document.getElementById('mZip').value         = r ? (r.zip||'')         : '';
@@ -738,22 +811,16 @@ function setFormValues(r){
   document.getElementById('mTel2').value        = r ? (r.tel2||'')        : '';
   document.getElementById('mCel').value         = r ? (r.cel||'')         : '';
   document.getElementById('mWebsite').value     = r ? (r.website||'')     : '';
-  document.getElementById('mGPSLat').value      = r && r.gpsLat !== null ? r.gpsLat : '';
-  document.getElementById('mGPSLong').value     = r && r.gpsLong ? r.gpsLong : '';
-  // Logos
+  document.getElementById('mGPSLat').value      = r && r.gpsLat !== null  ? r.gpsLat  : '';
+  document.getElementById('mGPSLong').value     = r && r.gpsLong          ? r.gpsLong : '';
+  document.getElementById('mIsActive').checked  = r ? !!r.active : true;
+  updateStatusLbl();
   resetLogoUpload('mChurchLogoPreview','mChurchLogoPlaceholder','mChurchLogoData','mChurchLogoFile');
-  resetLogoUpload('mReportLogoPreview','mReportLogoPlaceholder','mReportLogoData','mReportLogoFile');
   if(r && r.churchLogo){
     document.getElementById('mChurchLogoPreview').src = r.churchLogo;
     document.getElementById('mChurchLogoPreview').style.display = 'block';
     document.getElementById('mChurchLogoPlaceholder').style.display = 'none';
     document.getElementById('mChurchLogoData').value = r.churchLogo;
-  }
-  if(r && r.reportLogo){
-    document.getElementById('mReportLogoPreview').src = r.reportLogo;
-    document.getElementById('mReportLogoPreview').style.display = 'block';
-    document.getElementById('mReportLogoPlaceholder').style.display = 'none';
-    document.getElementById('mReportLogoData').value = r.reportLogo;
   }
 }
 
@@ -761,11 +828,11 @@ function setFormValues(r){
    ADD MODAL
 ═══════════════════════════════════════════════════════════ */
 function openAdd(){
-  document.getElementById('mChurchID').value         = '';
-  document.getElementById('mAssemblyID').disabled    = false;
+  document.getElementById('mChurchID').value      = '';
+  document.getElementById('mAssemblyID').disabled = false;
   setFormValues(null);
-  document.getElementById('mTitleTxt').textContent   = 'Add Church';
-  document.getElementById('mSaveTxt').textContent    = 'Save church';
+  document.getElementById('mTitleTxt').textContent = 'Add Church';
+  document.getElementById('mSaveTxt').textContent  = 'Save church';
   clearErrors();
   document.getElementById('formOverlay').classList.add('show');
   setTimeout(() => document.getElementById('mAssemblyID').focus(), 100);
@@ -776,11 +843,11 @@ function openAdd(){
 ═══════════════════════════════════════════════════════════ */
 function openEdit(id){
   const r = rows.find(x => x.id === id); if(!r) return;
-  document.getElementById('mChurchID').value         = id;
-  document.getElementById('mAssemblyID').disabled    = true;
+  document.getElementById('mChurchID').value      = id;
+  document.getElementById('mAssemblyID').disabled = true;
   setFormValues(r);
-  document.getElementById('mTitleTxt').textContent   = 'Edit Church — #' + id;
-  document.getElementById('mSaveTxt').textContent    = 'Update church';
+  document.getElementById('mTitleTxt').textContent = 'Edit Church — #' + id;
+  document.getElementById('mSaveTxt').textContent  = 'Update church';
   clearErrors();
   closeView();
   document.getElementById('formOverlay').classList.add('show');
@@ -805,19 +872,19 @@ function getFormData(){
     tel2:        document.getElementById('mTel2').value.trim() || null,
     cel:         document.getElementById('mCel').value.trim() || null,
     website:     document.getElementById('mWebsite').value.trim() || null,
-    gpsLat:      document.getElementById('mGPSLat').value !== '' ? parseFloat(document.getElementById('mGPSLat').value) : null,
+    gpsLat:      document.getElementById('mGPSLat').value  !== '' ? parseFloat(document.getElementById('mGPSLat').value)  : null,
     gpsLong:     document.getElementById('mGPSLong').value !== '' ? parseFloat(document.getElementById('mGPSLong').value) : 0,
     churchLogo:  document.getElementById('mChurchLogoData').value || null,
-    reportLogo:  document.getElementById('mReportLogoData').value || null,
+    active:      document.getElementById('mIsActive').checked ? 1 : 0,
   };
 }
 
 function saveRecord(){
   if(!validate()) return;
-  const origID  = document.getElementById('mChurchID').value;
-  const isEdit  = !!origID;
-  const now     = new Date().toLocaleDateString('en-GB', { day:'2-digit', month:'short', year:'numeric' });
-  const fd      = getFormData();
+  const origID = document.getElementById('mChurchID').value;
+  const isEdit = !!origID;
+  const now    = new Date().toLocaleDateString('en-GB', { day:'2-digit', month:'short', year:'numeric' });
+  const fd     = getFormData();
 
   if(!isEdit){
     if(rows.find(x => x.assemblyID === fd.assemblyID)){
@@ -841,45 +908,39 @@ function saveRecord(){
 /* ═══════════════════════════════════════════════════════════
    VIEW DETAIL MODAL
 ═══════════════════════════════════════════════════════════ */
-function v(val, cls=''){
+function v(val){
   if(val === null || val === undefined || val === '') return `<span class="empty-val">—</span>`;
-  return cls ? `<span class="${cls}">${val}</span>` : val;
+  return val;
 }
 
 function openView(id){
   const r = rows.find(x => x.id === id); if(!r) return;
   viewingID = id;
-  const circ = getCircuit(r.circuitID);
+  const circ   = getCircuit(r.circuitID);
   const hasGPS = r.gpsLat !== null && r.gpsLat !== 0;
   const mapsLink = hasGPS
     ? `<a href="https://maps.google.com/?q=${r.gpsLat},${r.gpsLong}" target="_blank" style="color:var(--blue);font-size:11px;margin-left:6px">Open in Maps ↗</a>`
     : '';
 
+  const phones = [r.tel1, r.tel2, r.cel].filter(Boolean);
+  const phoneHTML = phones.length ? phones.join('<br>') : '<span class="empty-val">—</span>';
+
   document.getElementById('detailGrid').innerHTML = `
     <div class="detail-cell"><div class="dlbl">Church ID</div><div class="dval mono">#${r.id}</div></div>
+    <div class="detail-cell"><div class="dlbl">Status</div><div class="dval">${r.active ? '<span class="badge active">Active</span>' : '<span class="badge inactive">Inactive</span>'}</div></div>
     <div class="detail-cell"><div class="dlbl">Assembly ID</div><div class="dval mono">${r.assemblyID}</div></div>
-    <div class="detail-cell full"><div class="dlbl">Branch / Assembly / Local</div><div class="dval">${v(r.branch)}</div></div>
-    <div class="detail-cell"><div class="dlbl">Circuit</div><div class="dval"><span class="tid circuit">${r.circuitID}</span> <span style="font-size:12px;color:var(--muted)">${circ.name}</span></div></div>
     <div class="detail-cell"><div class="dlbl">Captured</div><div class="dval">${r.capturedDate}</div></div>
     <div class="detail-cell"><div class="dlbl">Postal Address</div><div class="dval">${v(r.postal)}</div></div>
     <div class="detail-cell"><div class="dlbl">Residential Address</div><div class="dval">${v(r.residential)}</div></div>
     <div class="detail-cell"><div class="dlbl">Zip / Post Code</div><div class="dval">${v(r.zip)}</div></div>
+    <div class="detail-cell"><div class="dlbl">Phone Numbers</div><div class="dval" style="line-height:1.8;font-size:12px">${phoneHTML}</div></div>
     <div class="detail-cell"><div class="dlbl">Email</div><div class="dval">${r.email ? `<a href="mailto:${r.email}" style="color:var(--blue)">${r.email}</a>` : '<span class="empty-val">—</span>'}</div></div>
     <div class="detail-cell"><div class="dlbl">Website</div><div class="dval">${r.website ? `<a href="${r.website}" target="_blank" style="color:var(--blue)">${r.website}</a>` : '<span class="empty-val">—</span>'}</div></div>
-    <div class="detail-cell"><div class="dlbl">Tel 1</div><div class="dval">${v(r.tel1)}</div></div>
-    <div class="detail-cell"><div class="dlbl">Tel 2 / Cell</div><div class="dval">${v(r.tel2) !== '<span class="empty-val">—</span>' ? v(r.tel2) : ''} ${v(r.cel)}</div></div>
     <div class="detail-cell full"><div class="dlbl">GPS Coordinates ${mapsLink}</div><div class="dval mono">${hasGPS ? r.gpsLat + ', ' + r.gpsLong : '<span class="empty-val">Not set</span>'}</div></div>
     <div class="detail-cell full">
-      <div class="dlbl">Logos</div>
-      <div class="logos-row" style="margin-top:8px">
-        <div class="logo-block">
-          <div class="dlbl">Church Logo</div>
-          ${r.churchLogo ? `<div class="detail-logo"><img src="${r.churchLogo}" alt="church logo"></div>` : '<div class="detail-logo">🏛️</div>'}
-        </div>
-        <div class="logo-block">
-          <div class="dlbl">Report Logo</div>
-          ${r.reportLogo ? `<div class="detail-logo"><img src="${r.reportLogo}" alt="report logo"></div>` : '<div class="detail-logo">📄</div>'}
-        </div>
+      <div class="dlbl">Church Logo</div>
+      <div style="margin-top:8px">
+        ${r.churchLogo ? `<div class="detail-logo"><img src="${r.churchLogo}" alt="church logo"></div>` : '<div class="detail-logo">🏛️</div>'}
       </div>
     </div>
   `;
@@ -888,13 +949,31 @@ function openView(id){
 function closeView(){ document.getElementById('viewOverlay').classList.remove('show'); }
 function editFromView(){ closeView(); if(viewingID) openEdit(viewingID); }
 
+function updateStatusLbl(){
+  const active = document.getElementById('mIsActive').checked;
+  document.getElementById('mStatusLbl').innerHTML = active
+    ? '<span class="badge active">Active</span>'
+    : '<span class="badge inactive">Inactive</span>';
+}
+
+/* ═══════════════════════════════════════════════════════════
+   TOGGLE ACTIVE (from table row button)
+═══════════════════════════════════════════════════════════ */
+function doToggle(id){
+  const r = rows.find(x => x.id === id); if(!r) return;
+  r.active = r.active ? 0 : 1;
+  doFilter(); updateStats();
+  showToast('"' + (r.branch||r.assemblyID) + '" ' + (r.active ? 'reactivated' : 'deactivated') + '.', r.active ? 'success' : 'warning');
+  hlRow(id);
+}
+
 /* ═══════════════════════════════════════════════════════════
    DELETE MODAL + CONFIRM
 ═══════════════════════════════════════════════════════════ */
 function openDelete(id){
   const r = rows.find(x => x.id === id); if(!r) return;
-  document.getElementById('dID').value           = id;
-  document.getElementById('dName').textContent   = '#' + id + ' — ' + (r.branch || r.assemblyID);
+  document.getElementById('dID').value         = id;
+  document.getElementById('dName').textContent = '#' + id + ' — ' + (r.branch || r.assemblyID);
   document.getElementById('delOverlay').classList.add('show');
 }
 function closeDel(){ document.getElementById('delOverlay').classList.remove('show'); }
